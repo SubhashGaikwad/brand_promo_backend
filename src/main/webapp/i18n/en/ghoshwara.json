@@ -1,0 +1,41 @@
+{
+  "eofficeApp": {
+    "ghoshwara": {
+      "home": {
+        "title": "Ghoshwaras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ghoshwara",
+        "createOrEditLabel": "Create or edit a Ghoshwara",
+        "notFound": "No Ghoshwaras found"
+      },
+      "created": "A new Ghoshwara is created with identifier {{ param }}",
+      "updated": "A Ghoshwara is updated with identifier {{ param }}",
+      "deleted": "A Ghoshwara is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ghoshwara {{ id }}?"
+      },
+      "detail": {
+        "title": "Ghoshwara"
+      },
+      "id": "ID",
+      "registerType": "Register Type",
+      "initialPendings": "Initial Pendings",
+      "currentWeekInwards": "Current Week Inwards",
+      "total": "Total",
+      "selfGenerated": "Self Generated",
+      "currentWeekCleared": "Current Week Cleared",
+      "weeklyPendings": "Weekly Pendings",
+      "firstWeek": "First Week",
+      "secondWeek": "Second Week",
+      "thirdWeek": "Third Week",
+      "firstMonth": "First Month",
+      "secondMonth": "Second Month",
+      "thirdMonth": "Third Month",
+      "withinSixMonths": "Within Six Months",
+      "date": "Date",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User"
+    }
+  }
+}

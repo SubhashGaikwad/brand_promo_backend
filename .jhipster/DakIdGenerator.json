@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122545",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "dak_id_generator",
+  "fields": [
+    {
+      "fieldName": "nextValInward",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nextValOutward",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DakIdGenerator",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "dakIdGenerator",
+      "ownerSide": true,
+      "relationshipName": "organization",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

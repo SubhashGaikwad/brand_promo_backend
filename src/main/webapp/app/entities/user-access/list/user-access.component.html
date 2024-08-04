@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="UserAccessHeading">
+    <span jhiTranslate="eofficeApp.userAccess.home.title">User Accesses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="eofficeApp.userAccess.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-access"
+        [routerLink]="['/user-access/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="eofficeApp.userAccess.home.createLabel"> Create a new User Access </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userAccesses?.length === 0">
+    <span jhiTranslate="eofficeApp.userAccess.home.notFound">No userAccesses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="userAccesses && userAccesses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="level">
+            <span jhiTranslate="eofficeApp.userAccess.level">Level</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="accessId">
+            <span jhiTranslate="eofficeApp.userAccess.accessId">Access Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="eofficeApp.userAccess.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="eofficeApp.userAccess.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="securityUser.username">
+            <span jhiTranslate="eofficeApp.userAccess.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userAccess of userAccesses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-access', userAccess.id, 'view']">{{ userAccess.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'eofficeApp.AccessLevel.' + userAccess.level }}">{{ userAccess.level }}</td>
+          <td>{{ userAccess.accessId }}</td>
+          <td>{{ userAccess.lastModified | formatMediumDatetime }}</td>
+          <td>{{ userAccess.lastModifiedBy }}</td>
+          <td>
+            <div *ngIf="userAccess.securityUser">
+              <a [routerLink]="['/security-user', userAccess.securityUser?.id, 'view']">{{ userAccess.securityUser?.username }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-access', userAccess.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-access', userAccess.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userAccess)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="userAccesses && userAccesses.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

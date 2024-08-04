@@ -1,0 +1,181 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-dak-journey-heading" data-cy="DakJourneyCreateUpdateHeading" jhiTranslate="eofficeApp.dakJourney.home.createOrEditLabel">
+        Create or edit a Dak Journey
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.assignedOn" for="field_assignedOn">Assigned On</label>
+          <div class="d-flex">
+            <input
+              id="field_assignedOn"
+              data-cy="assignedOn"
+              type="datetime-local"
+              class="form-control"
+              name="assignedOn"
+              formControlName="assignedOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.updatedOn" for="field_updatedOn">Updated On</label>
+          <div class="d-flex">
+            <input
+              id="field_updatedOn"
+              data-cy="updatedOn"
+              type="datetime-local"
+              class="form-control"
+              name="updatedOn"
+              formControlName="updatedOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.dakStatus" for="field_dakStatus">Dak Status</label>
+          <select class="form-control" name="dakStatus" formControlName="dakStatus" id="field_dakStatus" data-cy="dakStatus">
+            <option [ngValue]="null">{{ 'eofficeApp.DakStatus.null' | translate }}</option>
+            <option *ngFor="let dakStatus of dakStatusValues" [value]="dakStatus">
+              {{ 'eofficeApp.DakStatus.' + dakStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.status" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.dakAssignedBy" for="field_dakAssignedBy">Dak Assigned By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dakAssignedBy"
+            id="field_dakAssignedBy"
+            data-cy="dakAssignedBy"
+            formControlName="dakAssignedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.dakAssignedTo" for="field_dakAssignedTo">Dak Assigned To</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dakAssignedTo"
+            id="field_dakAssignedTo"
+            data-cy="dakAssignedTo"
+            formControlName="dakAssignedTo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.dakMaster" for="field_dakMaster">Dak Master</label>
+          <select class="form-control" id="field_dakMaster" data-cy="dakMaster" name="dakMaster" formControlName="dakMaster">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="dakMasterOption.id === editForm.get('dakMaster')!.value?.id ? editForm.get('dakMaster')!.value : dakMasterOption"
+              *ngFor="let dakMasterOption of dakMastersSharedCollection; trackBy: trackDakMasterById"
+            >
+              {{ dakMasterOption.inwardNumber }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.securityUser" for="field_securityUser">Security User</label>
+          <select class="form-control" id="field_securityUser" data-cy="securityUser" name="securityUser" formControlName="securityUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                securityUserOption.id === editForm.get('securityUser')!.value?.id ? editForm.get('securityUser')!.value : securityUserOption
+              "
+              *ngFor="let securityUserOption of securityUsersSharedCollection; trackBy: trackSecurityUserById"
+            >
+              {{ securityUserOption.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakJourney.commentMaster" for="field_commentMaster">Comment Master</label>
+          <select
+            class="form-control"
+            id="field_commentMaster"
+            data-cy="commentMaster"
+            name="commentMaster"
+            formControlName="commentMaster"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                commentMasterOption.id === editForm.get('commentMaster')!.value?.id
+                  ? editForm.get('commentMaster')!.value
+                  : commentMasterOption
+              "
+              *ngFor="let commentMasterOption of commentMastersSharedCollection; trackBy: trackCommentMasterById"
+            >
+              {{ commentMasterOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

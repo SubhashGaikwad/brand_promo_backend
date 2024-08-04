@@ -1,0 +1,26 @@
+{
+  "eofficeApp": {
+    "dakIdGenerator": {
+      "home": {
+        "title": "Dak Id Generators",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dak Id Generator",
+        "createOrEditLabel": "Create or edit a Dak Id Generator",
+        "notFound": "No Dak Id Generators found"
+      },
+      "created": "A new Dak Id Generator is created with identifier {{ param }}",
+      "updated": "A Dak Id Generator is updated with identifier {{ param }}",
+      "deleted": "A Dak Id Generator is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dak Id Generator {{ id }}?"
+      },
+      "detail": {
+        "title": "Dak Id Generator"
+      },
+      "id": "ID",
+      "nextValInward": "Next Val Inward",
+      "nextValOutward": "Next Val Outward",
+      "organization": "Organization"
+    }
+  }
+}

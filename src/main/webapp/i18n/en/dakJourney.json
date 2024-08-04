@@ -1,0 +1,34 @@
+{
+  "eofficeApp": {
+    "dakJourney": {
+      "home": {
+        "title": "Dak Journeys",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dak Journey",
+        "createOrEditLabel": "Create or edit a Dak Journey",
+        "notFound": "No Dak Journeys found"
+      },
+      "created": "A new Dak Journey is created with identifier {{ param }}",
+      "updated": "A Dak Journey is updated with identifier {{ param }}",
+      "deleted": "A Dak Journey is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dak Journey {{ id }}?"
+      },
+      "detail": {
+        "title": "Dak Journey"
+      },
+      "id": "ID",
+      "assignedOn": "Assigned On",
+      "updatedOn": "Updated On",
+      "dakStatus": "Dak Status",
+      "status": "Status",
+      "dakAssignedBy": "Dak Assigned By",
+      "dakAssignedTo": "Dak Assigned To",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "dakMaster": "Dak Master",
+      "securityUser": "Security User",
+      "commentMaster": "Comment Master"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="securityUser">
+      <h2 data-cy="securityUserDetailsHeading"><span jhiTranslate="eofficeApp.securityUser.detail.title">Security User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ securityUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ securityUser.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ securityUser.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.designation">Designation</span></dt>
+        <dd>
+          <span>{{ securityUser.designation }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.username">Username</span></dt>
+        <dd>
+          <span>{{ securityUser.username }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.passwordHash">Password Hash</span></dt>
+        <dd>
+          <span>{{ securityUser.passwordHash }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.email">Email</span></dt>
+        <dd>
+          <span>{{ securityUser.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.description">Description</span></dt>
+        <dd>
+          <span>{{ securityUser.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.department">Department</span></dt>
+        <dd>
+          <span>{{ securityUser.department }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.imageUrl">Image Url</span></dt>
+        <dd>
+          <span>{{ securityUser.imageUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.activated">Activated</span></dt>
+        <dd>
+          <span>{{ securityUser.activated }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.langKey">Lang Key</span></dt>
+        <dd>
+          <span>{{ securityUser.langKey }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.activationKey">Activation Key</span></dt>
+        <dd>
+          <span>{{ securityUser.activationKey }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.resetKey">Reset Key</span></dt>
+        <dd>
+          <span>{{ securityUser.resetKey }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.resetDate">Reset Date</span></dt>
+        <dd>
+          <span>{{ securityUser.resetDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.mobileNo">Mobile No</span></dt>
+        <dd>
+          <span>{{ securityUser.mobileNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ securityUser.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ securityUser.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.organization">Organization</span></dt>
+        <dd>
+          <div *ngIf="securityUser.organization">
+            <a [routerLink]="['/organization', securityUser.organization?.id, 'view']">{{ securityUser.organization?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.securityPermission">Security Permission</span></dt>
+        <dd>
+          <span *ngFor="let securityPermission of securityUser.securityPermissions; let last = last">
+            <a [routerLink]="['/security-permission', securityPermission?.id, 'view']">{{ securityPermission.permissionName }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityUser.securityRole">Security Role</span></dt>
+        <dd>
+          <span *ngFor="let securityRole of securityUser.securityRoles; let last = last">
+            <a [routerLink]="['/security-role', securityRole?.id, 'view']">{{ securityRole.roleName }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/security-user', securityUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

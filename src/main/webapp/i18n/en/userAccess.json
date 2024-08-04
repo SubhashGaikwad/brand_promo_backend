@@ -1,0 +1,28 @@
+{
+  "eofficeApp": {
+    "userAccess": {
+      "home": {
+        "title": "User Accesses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Access",
+        "createOrEditLabel": "Create or edit a User Access",
+        "notFound": "No User Accesses found"
+      },
+      "created": "A new User Access is created with identifier {{ param }}",
+      "updated": "A User Access is updated with identifier {{ param }}",
+      "deleted": "A User Access is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Access {{ id }}?"
+      },
+      "detail": {
+        "title": "User Access"
+      },
+      "id": "ID",
+      "level": "Level",
+      "accessId": "Access Id",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User"
+    }
+  }
+}

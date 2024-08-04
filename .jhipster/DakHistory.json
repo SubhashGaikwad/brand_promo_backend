@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122549",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "dak_history",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "assignedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "assignedOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dakStatus",
+      "fieldType": "DakStatus",
+      "fieldValues": "CREATED (Created),UPDATED (Updated),ASSIGNED (Assigned),AWAITED (Awaited),HEARING (Hearing),HEARING_AWAITED (Hearing_Awaited),HEARING_COMPLETED (Hearing_Completed),PENDING (Pending),AWAITED_FOR_ORDER (Awaited_For_Order),CLEARED (Cleared)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DakHistory",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "inwardNumber",
+      "otherEntityName": "dakMaster",
+      "otherEntityRelationshipName": "dakHistory",
+      "relationshipName": "dakMaster",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "dakHistory",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

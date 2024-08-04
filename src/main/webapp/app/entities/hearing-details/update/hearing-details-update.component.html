@@ -1,0 +1,166 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-hearing-details-heading"
+        data-cy="HearingDetailsCreateUpdateHeading"
+        jhiTranslate="eofficeApp.hearingDetails.home.createOrEditLabel"
+      >
+        Create or edit a Hearing Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.accuserName" for="field_accuserName">Accuser Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accuserName"
+            id="field_accuserName"
+            data-cy="accuserName"
+            formControlName="accuserName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.orderDate" for="field_orderDate">Order Date</label>
+          <div class="d-flex">
+            <input
+              id="field_orderDate"
+              data-cy="orderDate"
+              type="datetime-local"
+              class="form-control"
+              name="orderDate"
+              formControlName="orderDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.respondentName" for="field_respondentName"
+            >Respondent Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="respondentName"
+            id="field_respondentName"
+            data-cy="respondentName"
+            formControlName="respondentName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.comment" for="field_comment">Comment</label>
+          <input type="text" class="form-control" name="comment" id="field_comment" data-cy="comment" formControlName="comment" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.time" for="field_time">Time</label>
+          <div class="d-flex">
+            <input
+              id="field_time"
+              data-cy="time"
+              type="datetime-local"
+              class="form-control"
+              name="time"
+              formControlName="time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'eofficeApp.DakStatus.null' | translate }}</option>
+            <option *ngFor="let dakStatus of dakStatusValues" [value]="dakStatus">
+              {{ 'eofficeApp.DakStatus.' + dakStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.hearingDetails.dakMaster" for="field_dakMaster">Dak Master</label>
+          <select class="form-control" id="field_dakMaster" data-cy="dakMaster" name="dakMaster" formControlName="dakMaster">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="dakMasterOption.id === editForm.get('dakMaster')!.value?.id ? editForm.get('dakMaster')!.value : dakMasterOption"
+              *ngFor="let dakMasterOption of dakMastersSharedCollection; trackBy: trackDakMasterById"
+            >
+              {{ dakMasterOption.inwardNumber }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,244 @@
+entity SecurityUser {
+    firstName String
+    lastName String
+    designation String
+    username String required unique
+    passwordHash String required
+	email String unique
+    description String
+    department String
+    imageUrl String
+    activated Boolean 
+    langKey String
+    activationKey String
+    resetKey String
+    resetDate Instant
+	mobileNo String
+    createdBy String
+	createdOn Instant
+}
+
+entity UserAccess {
+    level AccessLevel
+    accessId Long
+    lastModified Instant 
+	lastModifiedBy String
+}
+
+entity SecurityRole {
+	roleName String required unique
+	description String
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity SecurityPermission{
+	permissionName String required unique
+	description String
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity Organization{
+    organizationName String required unique
+	address String
+	createdOn String
+	description String 
+	isActivate Boolean 
+	orgnizationType OrganizationType required
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity DakMaster{
+    inwardNumber String
+    senderName String
+    contactNumber String
+    senderAddress String
+	senderEmail String
+    subject String
+    letterDate Instant
+    currentStatus DakStatus
+	letterStatus Boolean
+    letterReceivedDate Instant
+	awaitReason String
+	dispatchDate Instant
+    createdBy String
+	letterType LetterType // we need letter Type ?
+	isResponseReceived Boolean
+    assignedDate Instant
+	lastModified Instant 
+	lastModifiedBy String 
+	dakAssignedFrom String 
+	dakAssignee String 
+	dispatchBy String 
+	senderOutward String
+    outwardNumber String
+	taluka String
+}
+
+entity DakIdGenerator{
+	nextValInward Long
+    nextValOutward Long
+}
+
+entity ParameterLookup{
+	parameterName String required
+	parameterValue String required
+	type String required
+    status String
+	lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+}
+
+entity CommentMaster{
+	description String
+	createdOn Instant
+	createdBy String
+	status Boolean
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity HearingDetails{
+	accuserName String
+	orderDate Instant
+	respondentName String
+	comment String
+	date Instant
+	time Instant
+	status DakStatus
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity DakHistory{
+    date Instant
+    assignedBy String
+	assignedOn Instant
+	createdOn Instant
+	dakStatus DakStatus
+	status Boolean 
+	lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity DakJourney{
+	assignedOn Instant
+	updatedOn Instant
+	dakStatus DakStatus
+	status Boolean 
+    dakAssignedBy String
+    dakAssignedTo String
+	lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity Ghoshwara{
+    registerType RegisterType
+    initialPendings Integer
+    currentWeekInwards Integer
+    total Integer
+    selfGenerated Integer
+    currentWeekCleared Integer
+    weeklyPendings Integer
+    firstWeek Integer
+    secondWeek Integer
+    thirdWeek Integer
+    firstMonth Integer
+    secondMonth Integer
+    thirdMonth Integer
+    withinSixMonths Integer
+    withinSixMonths Integer
+    withinSixMonths Integer
+    date Instant
+	lastModified Instant 
+	lastModifiedBy String 
+}
+
+enum LetterType{
+	INWARD(Inward)
+    OUTWARD(Outward)
+    SELF(Self)
+    OTHER(Other)
+}
+
+enum OrganizationType{
+	AR(TalukaRegister)
+    DDR(DistrictDeputyRegister)
+}
+
+enum AccessLevel {
+    ROOT(Root)
+    ORGANIZATION(Organization)
+}
+
+enum DakStatus {
+    CREATED(Created)
+    UPDATED(Updated)
+    ASSIGNED(Assigned)
+    AWAITED(Awaited)
+    HEARING(Hearing)
+    HEARING_AWAITED(Hearing_Awaited)
+    HEARING_COMPLETED(Hearing_Completed)
+    PENDING(Pending)
+    AWAITED_FOR_ORDER(Awaited_For_Order)
+    CLEARED(Cleared)
+    
+}
+
+enum RegisterType{
+WORK_DESCRIPTION(WorkDescription)
+AWAITED_REGISTER(AwaitedRegister)
+}
+
+// DakJourney Table is not added if we want to track DakJourney we can add 
+
+relationship OneToOne{
+	DakIdGenerator{organization} to Organization
+}
+
+
+relationship ManyToOne{
+    DakMaster{organization} to Organization
+    Ghoshwara{securityUser(username)} to SecurityUser
+    DakHistory{dakMaster(inwardNumber)} to DakMaster
+    DakHistory{securityUser(username)} to SecurityUser
+    DakJourney{dakMaster(inwardNumber)} to DakMaster
+    DakJourney{securityUser(username)} to SecurityUser
+    DakJourney{commentMaster} to CommentMaster
+}
+
+relationship ManyToOne{
+    ParameterLookup{organization} to Organization
+    HearingDetails{dakMaster(inwardNumber)} to DakMaster
+   	CommentMaster{securityUser(username)} to SecurityUser
+    CommentMaster{dakMaster(inwardNumber)} to DakMaster
+    UserAccess{securityUser(username)} to SecurityUser
+    SecurityUser{organization} to Organization
+    UserAccess{securityUser(username)} to SecurityUser
+}
+
+relationship ManyToMany {
+  SecurityRole{securityPermission(permissionName)} to SecurityPermission{securityRole(roleName)}
+  SecurityUser{securityPermission(permissionName)} to SecurityPermission{securityUser(username)}
+  SecurityUser{securityRole(roleName)} to SecurityRole{securityUser(username)}
+  DakMaster{SecurityUser(username)} to SecurityUser{dakMaster(inwardNumber)} 
+  }
+  
+  
+  // Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with tvg

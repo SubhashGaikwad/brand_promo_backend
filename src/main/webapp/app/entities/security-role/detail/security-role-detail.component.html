@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="securityRole">
+      <h2 data-cy="securityRoleDetailsHeading"><span jhiTranslate="eofficeApp.securityRole.detail.title">Security Role</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ securityRole.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityRole.roleName">Role Name</span></dt>
+        <dd>
+          <span>{{ securityRole.roleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityRole.description">Description</span></dt>
+        <dd>
+          <span>{{ securityRole.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityRole.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ securityRole.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityRole.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ securityRole.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.securityRole.securityPermission">Security Permission</span></dt>
+        <dd>
+          <span *ngFor="let securityPermission of securityRole.securityPermissions; let last = last">
+            <a [routerLink]="['/security-permission', securityPermission?.id, 'view']">{{ securityPermission.permissionName }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/security-role', securityRole.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

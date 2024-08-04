@@ -1,0 +1,29 @@
+{
+  "eofficeApp": {
+    "securityRole": {
+      "home": {
+        "title": "Security Roles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Security Role",
+        "createOrEditLabel": "Create or edit a Security Role",
+        "notFound": "No Security Roles found"
+      },
+      "created": "A new Security Role is created with identifier {{ param }}",
+      "updated": "A Security Role is updated with identifier {{ param }}",
+      "deleted": "A Security Role is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Security Role {{ id }}?"
+      },
+      "detail": {
+        "title": "Security Role"
+      },
+      "id": "ID",
+      "roleName": "Role Name",
+      "description": "Description",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityPermission": "Security Permission",
+      "securityUser": "Security User"
+    }
+  }
+}

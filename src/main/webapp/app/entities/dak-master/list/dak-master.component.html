@@ -1,0 +1,198 @@
+<div>
+  <h2 id="page-heading" data-cy="DakMasterHeading">
+    <span jhiTranslate="eofficeApp.dakMaster.home.title">Dak Masters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakMaster.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dak-master"
+        [routerLink]="['/dak-master/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakMaster.home.createLabel"> Create a new Dak Master </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dakMasters?.length === 0">
+    <span jhiTranslate="eofficeApp.dakMaster.home.notFound">No dakMasters found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="dakMasters && dakMasters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="inwardNumber">
+            <span jhiTranslate="eofficeApp.dakMaster.inwardNumber">Inward Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="senderName">
+            <span jhiTranslate="eofficeApp.dakMaster.senderName">Sender Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="contactNumber">
+            <span jhiTranslate="eofficeApp.dakMaster.contactNumber">Contact Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="senderAddress">
+            <span jhiTranslate="eofficeApp.dakMaster.senderAddress">Sender Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="senderEmail">
+            <span jhiTranslate="eofficeApp.dakMaster.senderEmail">Sender Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="subject">
+            <span jhiTranslate="eofficeApp.dakMaster.subject">Subject</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="letterDate">
+            <span jhiTranslate="eofficeApp.dakMaster.letterDate">Letter Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="currentStatus">
+            <span jhiTranslate="eofficeApp.dakMaster.currentStatus">Current Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="letterStatus">
+            <span jhiTranslate="eofficeApp.dakMaster.letterStatus">Letter Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="letterReceivedDate">
+            <span jhiTranslate="eofficeApp.dakMaster.letterReceivedDate">Letter Received Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="awaitReason">
+            <span jhiTranslate="eofficeApp.dakMaster.awaitReason">Await Reason</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dispatchDate">
+            <span jhiTranslate="eofficeApp.dakMaster.dispatchDate">Dispatch Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="eofficeApp.dakMaster.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="letterType">
+            <span jhiTranslate="eofficeApp.dakMaster.letterType">Letter Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isResponseReceived">
+            <span jhiTranslate="eofficeApp.dakMaster.isResponseReceived">Is Response Received</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assignedDate">
+            <span jhiTranslate="eofficeApp.dakMaster.assignedDate">Assigned Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="eofficeApp.dakMaster.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="eofficeApp.dakMaster.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakAssignedFrom">
+            <span jhiTranslate="eofficeApp.dakMaster.dakAssignedFrom">Dak Assigned From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakAssignee">
+            <span jhiTranslate="eofficeApp.dakMaster.dakAssignee">Dak Assignee</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dispatchBy">
+            <span jhiTranslate="eofficeApp.dakMaster.dispatchBy">Dispatch By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="senderOutward">
+            <span jhiTranslate="eofficeApp.dakMaster.senderOutward">Sender Outward</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="outwardNumber">
+            <span jhiTranslate="eofficeApp.dakMaster.outwardNumber">Outward Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="taluka">
+            <span jhiTranslate="eofficeApp.dakMaster.taluka">Taluka</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="organization.id">
+            <span jhiTranslate="eofficeApp.dakMaster.organization">Organization</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dakMaster of dakMasters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dak-master', dakMaster.id, 'view']">{{ dakMaster.id }}</a>
+          </td>
+          <td>{{ dakMaster.inwardNumber }}</td>
+          <td>{{ dakMaster.senderName }}</td>
+          <td>{{ dakMaster.contactNumber }}</td>
+          <td>{{ dakMaster.senderAddress }}</td>
+          <td>{{ dakMaster.senderEmail }}</td>
+          <td>{{ dakMaster.subject }}</td>
+          <td>{{ dakMaster.letterDate | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakMaster.currentStatus }}">{{ dakMaster.currentStatus }}</td>
+          <td>{{ dakMaster.letterStatus }}</td>
+          <td>{{ dakMaster.letterReceivedDate | formatMediumDatetime }}</td>
+          <td>{{ dakMaster.awaitReason }}</td>
+          <td>{{ dakMaster.dispatchDate | formatMediumDatetime }}</td>
+          <td>{{ dakMaster.createdBy }}</td>
+          <td jhiTranslate="{{ 'eofficeApp.LetterType.' + dakMaster.letterType }}">{{ dakMaster.letterType }}</td>
+          <td>{{ dakMaster.isResponseReceived }}</td>
+          <td>{{ dakMaster.assignedDate | formatMediumDatetime }}</td>
+          <td>{{ dakMaster.lastModified | formatMediumDatetime }}</td>
+          <td>{{ dakMaster.lastModifiedBy }}</td>
+          <td>{{ dakMaster.dakAssignedFrom }}</td>
+          <td>{{ dakMaster.dakAssignee }}</td>
+          <td>{{ dakMaster.dispatchBy }}</td>
+          <td>{{ dakMaster.senderOutward }}</td>
+          <td>{{ dakMaster.outwardNumber }}</td>
+          <td>{{ dakMaster.taluka }}</td>
+          <td>
+            <div *ngIf="dakMaster.organization">
+              <a [routerLink]="['/organization', dakMaster.organization?.id, 'view']">{{ dakMaster.organization?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/dak-master', dakMaster.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/dak-master', dakMaster.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dakMaster)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="dakMasters && dakMasters.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

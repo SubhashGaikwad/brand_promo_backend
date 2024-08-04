@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DakHistory.
+    -->
+    <changeSet id="20220420122549-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="dak_master_id"
+                                 baseTableName="dak_history"
+                                 constraintName="fk_dak_history__dak_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dak_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_user_id"
+                                 baseTableName="dak_history"
+                                 constraintName="fk_dak_history__security_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122547",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "comment_master",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CommentMaster",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "commentMaster",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "inwardNumber",
+      "otherEntityName": "dakMaster",
+      "otherEntityRelationshipName": "commentMaster",
+      "relationshipName": "dakMaster",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

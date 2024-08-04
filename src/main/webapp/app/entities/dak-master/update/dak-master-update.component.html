@@ -1,0 +1,358 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-dak-master-heading" data-cy="DakMasterCreateUpdateHeading" jhiTranslate="eofficeApp.dakMaster.home.createOrEditLabel">
+        Create or edit a Dak Master
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.inwardNumber" for="field_inwardNumber">Inward Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="inwardNumber"
+            id="field_inwardNumber"
+            data-cy="inwardNumber"
+            formControlName="inwardNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.senderName" for="field_senderName">Sender Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senderName"
+            id="field_senderName"
+            data-cy="senderName"
+            formControlName="senderName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.contactNumber" for="field_contactNumber">Contact Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="contactNumber"
+            id="field_contactNumber"
+            data-cy="contactNumber"
+            formControlName="contactNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.senderAddress" for="field_senderAddress">Sender Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senderAddress"
+            id="field_senderAddress"
+            data-cy="senderAddress"
+            formControlName="senderAddress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.senderEmail" for="field_senderEmail">Sender Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senderEmail"
+            id="field_senderEmail"
+            data-cy="senderEmail"
+            formControlName="senderEmail"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.subject" for="field_subject">Subject</label>
+          <input type="text" class="form-control" name="subject" id="field_subject" data-cy="subject" formControlName="subject" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.letterDate" for="field_letterDate">Letter Date</label>
+          <div class="d-flex">
+            <input
+              id="field_letterDate"
+              data-cy="letterDate"
+              type="datetime-local"
+              class="form-control"
+              name="letterDate"
+              formControlName="letterDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.currentStatus" for="field_currentStatus">Current Status</label>
+          <select
+            class="form-control"
+            name="currentStatus"
+            formControlName="currentStatus"
+            id="field_currentStatus"
+            data-cy="currentStatus"
+          >
+            <option [ngValue]="null">{{ 'eofficeApp.DakStatus.null' | translate }}</option>
+            <option *ngFor="let dakStatus of dakStatusValues" [value]="dakStatus">
+              {{ 'eofficeApp.DakStatus.' + dakStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.letterStatus" for="field_letterStatus">Letter Status</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="letterStatus"
+            id="field_letterStatus"
+            data-cy="letterStatus"
+            formControlName="letterStatus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.letterReceivedDate" for="field_letterReceivedDate"
+            >Letter Received Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_letterReceivedDate"
+              data-cy="letterReceivedDate"
+              type="datetime-local"
+              class="form-control"
+              name="letterReceivedDate"
+              formControlName="letterReceivedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.awaitReason" for="field_awaitReason">Await Reason</label>
+          <input
+            type="text"
+            class="form-control"
+            name="awaitReason"
+            id="field_awaitReason"
+            data-cy="awaitReason"
+            formControlName="awaitReason"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.dispatchDate" for="field_dispatchDate">Dispatch Date</label>
+          <div class="d-flex">
+            <input
+              id="field_dispatchDate"
+              data-cy="dispatchDate"
+              type="datetime-local"
+              class="form-control"
+              name="dispatchDate"
+              formControlName="dispatchDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.letterType" for="field_letterType">Letter Type</label>
+          <select class="form-control" name="letterType" formControlName="letterType" id="field_letterType" data-cy="letterType">
+            <option [ngValue]="null">{{ 'eofficeApp.LetterType.null' | translate }}</option>
+            <option *ngFor="let letterType of letterTypeValues" [value]="letterType">
+              {{ 'eofficeApp.LetterType.' + letterType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.isResponseReceived" for="field_isResponseReceived"
+            >Is Response Received</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isResponseReceived"
+            id="field_isResponseReceived"
+            data-cy="isResponseReceived"
+            formControlName="isResponseReceived"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.assignedDate" for="field_assignedDate">Assigned Date</label>
+          <div class="d-flex">
+            <input
+              id="field_assignedDate"
+              data-cy="assignedDate"
+              type="datetime-local"
+              class="form-control"
+              name="assignedDate"
+              formControlName="assignedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.dakAssignedFrom" for="field_dakAssignedFrom"
+            >Dak Assigned From</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dakAssignedFrom"
+            id="field_dakAssignedFrom"
+            data-cy="dakAssignedFrom"
+            formControlName="dakAssignedFrom"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.dakAssignee" for="field_dakAssignee">Dak Assignee</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dakAssignee"
+            id="field_dakAssignee"
+            data-cy="dakAssignee"
+            formControlName="dakAssignee"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.dispatchBy" for="field_dispatchBy">Dispatch By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dispatchBy"
+            id="field_dispatchBy"
+            data-cy="dispatchBy"
+            formControlName="dispatchBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.senderOutward" for="field_senderOutward">Sender Outward</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senderOutward"
+            id="field_senderOutward"
+            data-cy="senderOutward"
+            formControlName="senderOutward"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.outwardNumber" for="field_outwardNumber">Outward Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="outwardNumber"
+            id="field_outwardNumber"
+            data-cy="outwardNumber"
+            formControlName="outwardNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.taluka" for="field_taluka">Taluka</label>
+          <input type="text" class="form-control" name="taluka" id="field_taluka" data-cy="taluka" formControlName="taluka" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakMaster.organization" for="field_organization">Organization</label>
+          <select class="form-control" id="field_organization" data-cy="organization" name="organization" formControlName="organization">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                organizationOption.id === editForm.get('organization')!.value?.id ? editForm.get('organization')!.value : organizationOption
+              "
+              *ngFor="let organizationOption of organizationsSharedCollection; trackBy: trackOrganizationById"
+            >
+              {{ organizationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="eofficeApp.dakMaster.securityUser" for="field_securityUsers">Security User</label>
+          <select
+            class="form-control"
+            id="field_securityUsers"
+            data-cy="securityUser"
+            multiple
+            name="securityUsers"
+            formControlName="securityUsers"
+          >
+            <option
+              [ngValue]="getSelectedSecurityUser(securityUserOption, editForm.get('securityUsers')!.value)"
+              *ngFor="let securityUserOption of securityUsersSharedCollection; trackBy: trackSecurityUserById"
+            >
+              {{ securityUserOption.username }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

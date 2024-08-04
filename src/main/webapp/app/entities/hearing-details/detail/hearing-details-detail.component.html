@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="hearingDetails">
+      <h2 data-cy="hearingDetailsDetailsHeading"><span jhiTranslate="eofficeApp.hearingDetails.detail.title">Hearing Details</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ hearingDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.accuserName">Accuser Name</span></dt>
+        <dd>
+          <span>{{ hearingDetails.accuserName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.orderDate">Order Date</span></dt>
+        <dd>
+          <span>{{ hearingDetails.orderDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.respondentName">Respondent Name</span></dt>
+        <dd>
+          <span>{{ hearingDetails.respondentName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.comment">Comment</span></dt>
+        <dd>
+          <span>{{ hearingDetails.comment }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.date">Date</span></dt>
+        <dd>
+          <span>{{ hearingDetails.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.time">Time</span></dt>
+        <dd>
+          <span>{{ hearingDetails.time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.DakStatus.' + hearingDetails.status }}">{{ hearingDetails.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ hearingDetails.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ hearingDetails.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.hearingDetails.dakMaster">Dak Master</span></dt>
+        <dd>
+          <div *ngIf="hearingDetails.dakMaster">
+            <a [routerLink]="['/dak-master', hearingDetails.dakMaster?.id, 'view']">{{ hearingDetails.dakMaster?.inwardNumber }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/hearing-details', hearingDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

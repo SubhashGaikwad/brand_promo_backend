@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122541",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "security_role",
+  "fields": [
+    {
+      "fieldName": "roleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SecurityRole",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "permissionName",
+      "otherEntityName": "securityPermission",
+      "otherEntityRelationshipName": "securityRole",
+      "ownerSide": true,
+      "relationshipName": "securityPermission",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "securityRole",
+      "ownerSide": false,
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,31 @@
+{
+  "eofficeApp": {
+    "commentMaster": {
+      "home": {
+        "title": "Comment Masters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Comment Master",
+        "createOrEditLabel": "Create or edit a Comment Master",
+        "notFound": "No Comment Masters found"
+      },
+      "created": "A new Comment Master is created with identifier {{ param }}",
+      "updated": "A Comment Master is updated with identifier {{ param }}",
+      "deleted": "A Comment Master is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Comment Master {{ id }}?"
+      },
+      "detail": {
+        "title": "Comment Master"
+      },
+      "id": "ID",
+      "description": "Description",
+      "createdOn": "Created On",
+      "createdBy": "Created By",
+      "status": "Status",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityUser": "Security User",
+      "dakMaster": "Dak Master"
+    }
+  }
+}

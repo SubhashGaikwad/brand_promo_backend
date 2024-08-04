@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity SecurityUser.
+    -->
+    <changeSet id="20220420122539-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="organization_id"
+                                 baseTableName="security_user"
+                                 constraintName="fk_security_user__organization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_user_id"
+                                 baseTableName="rel_security_user__security_permission"
+                                 constraintName="fk_rel_security_user__security_permission__security_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_permission_id"
+                                 baseTableName="rel_security_user__security_permission"
+                                 constraintName="fk_rel_security_user__security___security_permission_a6_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_permission"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_user_id"
+                                 baseTableName="rel_security_user__security_role"
+                                 constraintName="fk_rel_security_user__security_role__security_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_role_id"
+                                 baseTableName="rel_security_user__security_role"
+                                 constraintName="fk_rel_security_user__security_role__security_role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_role"/>
+    </changeSet>
+</databaseChangeLog>

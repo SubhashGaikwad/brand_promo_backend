@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userAccess">
+      <h2 data-cy="userAccessDetailsHeading"><span jhiTranslate="eofficeApp.userAccess.detail.title">User Access</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userAccess.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.userAccess.level">Level</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.AccessLevel.' + userAccess.level }}">{{ userAccess.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.userAccess.accessId">Access Id</span></dt>
+        <dd>
+          <span>{{ userAccess.accessId }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.userAccess.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ userAccess.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.userAccess.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ userAccess.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.userAccess.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="userAccess.securityUser">
+            <a [routerLink]="['/security-user', userAccess.securityUser?.id, 'view']">{{ userAccess.securityUser?.username }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-access', userAccess.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

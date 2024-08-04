@@ -1,0 +1,33 @@
+{
+  "eofficeApp": {
+    "hearingDetails": {
+      "home": {
+        "title": "Hearing Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Hearing Details",
+        "createOrEditLabel": "Create or edit a Hearing Details",
+        "notFound": "No Hearing Details found"
+      },
+      "created": "A new Hearing Details is created with identifier {{ param }}",
+      "updated": "A Hearing Details is updated with identifier {{ param }}",
+      "deleted": "A Hearing Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Hearing Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Hearing Details"
+      },
+      "id": "ID",
+      "accuserName": "Accuser Name",
+      "orderDate": "Order Date",
+      "respondentName": "Respondent Name",
+      "comment": "Comment",
+      "date": "Date",
+      "time": "Time",
+      "status": "Status",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "dakMaster": "Dak Master"
+    }
+  }
+}

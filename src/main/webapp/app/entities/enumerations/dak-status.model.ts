@@ -1,0 +1,21 @@
+export enum DakStatus {
+  CREATED = 'Created',
+
+  UPDATED = 'Updated',
+
+  ASSIGNED = 'Assigned',
+
+  AWAITED = 'Awaited',
+
+  HEARING = 'Hearing',
+
+  HEARING_AWAITED = 'Hearing_Awaited',
+
+  HEARING_COMPLETED = 'Hearing_Completed',
+
+  PENDING = 'Pending',
+
+  AWAITED_FOR_ORDER = 'Awaited_For_Order',
+
+  CLEARED = 'Cleared',
+}

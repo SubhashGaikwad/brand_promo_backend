@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122548",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "hearing_details",
+  "fields": [
+    {
+      "fieldName": "accuserName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "respondentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "time",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DakStatus",
+      "fieldValues": "CREATED (Created),UPDATED (Updated),ASSIGNED (Assigned),AWAITED (Awaited),HEARING (Hearing),HEARING_AWAITED (Hearing_Awaited),HEARING_COMPLETED (Hearing_Completed),PENDING (Pending),AWAITED_FOR_ORDER (Awaited_For_Order),CLEARED (Cleared)"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "HearingDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "inwardNumber",
+      "otherEntityName": "dakMaster",
+      "otherEntityRelationshipName": "hearingDetails",
+      "relationshipName": "dakMaster",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

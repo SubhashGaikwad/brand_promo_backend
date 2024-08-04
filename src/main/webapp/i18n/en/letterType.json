@@ -1,0 +1,11 @@
+{
+  "eofficeApp": {
+    "LetterType": {
+      "null": "",
+      "INWARD": "Inward",
+      "OUTWARD": "Outward",
+      "SELF": "Self",
+      "OTHER": "Other"
+    }
+  }
+}

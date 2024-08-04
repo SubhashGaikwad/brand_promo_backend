@@ -1,0 +1,137 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dakMaster">
+      <h2 data-cy="dakMasterDetailsHeading"><span jhiTranslate="eofficeApp.dakMaster.detail.title">Dak Master</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dakMaster.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.inwardNumber">Inward Number</span></dt>
+        <dd>
+          <span>{{ dakMaster.inwardNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.senderName">Sender Name</span></dt>
+        <dd>
+          <span>{{ dakMaster.senderName }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.contactNumber">Contact Number</span></dt>
+        <dd>
+          <span>{{ dakMaster.contactNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.senderAddress">Sender Address</span></dt>
+        <dd>
+          <span>{{ dakMaster.senderAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.senderEmail">Sender Email</span></dt>
+        <dd>
+          <span>{{ dakMaster.senderEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.subject">Subject</span></dt>
+        <dd>
+          <span>{{ dakMaster.subject }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.letterDate">Letter Date</span></dt>
+        <dd>
+          <span>{{ dakMaster.letterDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.currentStatus">Current Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakMaster.currentStatus }}">{{ dakMaster.currentStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.letterStatus">Letter Status</span></dt>
+        <dd>
+          <span>{{ dakMaster.letterStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.letterReceivedDate">Letter Received Date</span></dt>
+        <dd>
+          <span>{{ dakMaster.letterReceivedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.awaitReason">Await Reason</span></dt>
+        <dd>
+          <span>{{ dakMaster.awaitReason }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.dispatchDate">Dispatch Date</span></dt>
+        <dd>
+          <span>{{ dakMaster.dispatchDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ dakMaster.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.letterType">Letter Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.LetterType.' + dakMaster.letterType }}">{{ dakMaster.letterType }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.isResponseReceived">Is Response Received</span></dt>
+        <dd>
+          <span>{{ dakMaster.isResponseReceived }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.assignedDate">Assigned Date</span></dt>
+        <dd>
+          <span>{{ dakMaster.assignedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ dakMaster.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ dakMaster.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.dakAssignedFrom">Dak Assigned From</span></dt>
+        <dd>
+          <span>{{ dakMaster.dakAssignedFrom }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.dakAssignee">Dak Assignee</span></dt>
+        <dd>
+          <span>{{ dakMaster.dakAssignee }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.dispatchBy">Dispatch By</span></dt>
+        <dd>
+          <span>{{ dakMaster.dispatchBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.senderOutward">Sender Outward</span></dt>
+        <dd>
+          <span>{{ dakMaster.senderOutward }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.outwardNumber">Outward Number</span></dt>
+        <dd>
+          <span>{{ dakMaster.outwardNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.taluka">Taluka</span></dt>
+        <dd>
+          <span>{{ dakMaster.taluka }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.organization">Organization</span></dt>
+        <dd>
+          <div *ngIf="dakMaster.organization">
+            <a [routerLink]="['/organization', dakMaster.organization?.id, 'view']">{{ dakMaster.organization?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakMaster.securityUser">Security User</span></dt>
+        <dd>
+          <span *ngFor="let securityUser of dakMaster.securityUsers; let last = last">
+            <a [routerLink]="['/security-user', securityUser?.id, 'view']">{{ securityUser.username }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dak-master', dakMaster.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commentMaster">
+      <h2 data-cy="commentMasterDetailsHeading"><span jhiTranslate="eofficeApp.commentMaster.detail.title">Comment Master</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commentMaster.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.description">Description</span></dt>
+        <dd>
+          <span>{{ commentMaster.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ commentMaster.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ commentMaster.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.status">Status</span></dt>
+        <dd>
+          <span>{{ commentMaster.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ commentMaster.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ commentMaster.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="commentMaster.securityUser">
+            <a [routerLink]="['/security-user', commentMaster.securityUser?.id, 'view']">{{ commentMaster.securityUser?.username }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.commentMaster.dakMaster">Dak Master</span></dt>
+        <dd>
+          <div *ngIf="commentMaster.dakMaster">
+            <a [routerLink]="['/dak-master', commentMaster.dakMaster?.id, 'view']">{{ commentMaster.dakMaster?.inwardNumber }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/comment-master', commentMaster.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity HearingDetails.
+    -->
+    <changeSet id="20220420122548-1" author="jhipster">
+        <createTable tableName="hearing_details">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="accuser_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="order_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="respondent_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="comment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dak_master_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="hearing_details" columnName="order_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="hearing_details" columnName="date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="hearing_details" columnName="time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="hearing_details" columnName="last_modified" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220420122548-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/hearing_details.csv"
+                  separator=";"
+                  tableName="hearing_details"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="accuser_name" type="string"/>
+            <column name="order_date" type="date"/>
+            <column name="respondent_name" type="string"/>
+            <column name="comment" type="string"/>
+            <column name="date" type="date"/>
+            <column name="time" type="date"/>
+            <column name="status" type="string"/>
+            <column name="last_modified" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

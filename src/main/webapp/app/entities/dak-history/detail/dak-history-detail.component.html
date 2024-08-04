@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dakHistory">
+      <h2 data-cy="dakHistoryDetailsHeading"><span jhiTranslate="eofficeApp.dakHistory.detail.title">Dak History</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dakHistory.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.date">Date</span></dt>
+        <dd>
+          <span>{{ dakHistory.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.assignedBy">Assigned By</span></dt>
+        <dd>
+          <span>{{ dakHistory.assignedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.assignedOn">Assigned On</span></dt>
+        <dd>
+          <span>{{ dakHistory.assignedOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ dakHistory.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.dakStatus">Dak Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakHistory.dakStatus }}">{{ dakHistory.dakStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.status">Status</span></dt>
+        <dd>
+          <span>{{ dakHistory.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ dakHistory.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ dakHistory.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.dakMaster">Dak Master</span></dt>
+        <dd>
+          <div *ngIf="dakHistory.dakMaster">
+            <a [routerLink]="['/dak-master', dakHistory.dakMaster?.id, 'view']">{{ dakHistory.dakMaster?.inwardNumber }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakHistory.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="dakHistory.securityUser">
+            <a [routerLink]="['/security-user', dakHistory.securityUser?.id, 'view']">{{ dakHistory.securityUser?.username }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dak-history', dakHistory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

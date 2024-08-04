@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dakJourney">
+      <h2 data-cy="dakJourneyDetailsHeading"><span jhiTranslate="eofficeApp.dakJourney.detail.title">Dak Journey</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dakJourney.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.assignedOn">Assigned On</span></dt>
+        <dd>
+          <span>{{ dakJourney.assignedOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.updatedOn">Updated On</span></dt>
+        <dd>
+          <span>{{ dakJourney.updatedOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.dakStatus">Dak Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakJourney.dakStatus }}">{{ dakJourney.dakStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.status">Status</span></dt>
+        <dd>
+          <span>{{ dakJourney.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.dakAssignedBy">Dak Assigned By</span></dt>
+        <dd>
+          <span>{{ dakJourney.dakAssignedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.dakAssignedTo">Dak Assigned To</span></dt>
+        <dd>
+          <span>{{ dakJourney.dakAssignedTo }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ dakJourney.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ dakJourney.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.dakMaster">Dak Master</span></dt>
+        <dd>
+          <div *ngIf="dakJourney.dakMaster">
+            <a [routerLink]="['/dak-master', dakJourney.dakMaster?.id, 'view']">{{ dakJourney.dakMaster?.inwardNumber }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="dakJourney.securityUser">
+            <a [routerLink]="['/security-user', dakJourney.securityUser?.id, 'view']">{{ dakJourney.securityUser?.username }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakJourney.commentMaster">Comment Master</span></dt>
+        <dd>
+          <div *ngIf="dakJourney.commentMaster">
+            <a [routerLink]="['/comment-master', dakJourney.commentMaster?.id, 'view']">{{ dakJourney.commentMaster?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dak-journey', dakJourney.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

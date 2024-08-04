@@ -1,0 +1,29 @@
+{
+  "eofficeApp": {
+    "securityPermission": {
+      "home": {
+        "title": "Security Permissions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Security Permission",
+        "createOrEditLabel": "Create or edit a Security Permission",
+        "notFound": "No Security Permissions found"
+      },
+      "created": "A new Security Permission is created with identifier {{ param }}",
+      "updated": "A Security Permission is updated with identifier {{ param }}",
+      "deleted": "A Security Permission is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Security Permission {{ id }}?"
+      },
+      "detail": {
+        "title": "Security Permission"
+      },
+      "id": "ID",
+      "permissionName": "Permission Name",
+      "description": "Description",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "securityRole": "Security Role",
+      "securityUser": "Security User"
+    }
+  }
+}

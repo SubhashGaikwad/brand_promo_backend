@@ -1,0 +1,129 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122544",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "dak_master",
+  "fields": [
+    {
+      "fieldName": "inwardNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senderName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contactNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senderAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senderEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "letterDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "currentStatus",
+      "fieldType": "DakStatus",
+      "fieldValues": "CREATED (Created),UPDATED (Updated),ASSIGNED (Assigned),AWAITED (Awaited),HEARING (Hearing),HEARING_AWAITED (Hearing_Awaited),HEARING_COMPLETED (Hearing_Completed),PENDING (Pending),AWAITED_FOR_ORDER (Awaited_For_Order),CLEARED (Cleared)"
+    },
+    {
+      "fieldName": "letterStatus",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "letterReceivedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "awaitReason",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dispatchDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "letterType",
+      "fieldType": "LetterType",
+      "fieldValues": "INWARD (Inward),OUTWARD (Outward),SELF (Self),OTHER (Other)"
+    },
+    {
+      "fieldName": "isResponseReceived",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "assignedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dakAssignedFrom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dakAssignee",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dispatchBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senderOutward",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "outwardNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "taluka",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DakMaster",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "dakMaster",
+      "relationshipName": "organization",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "dakMaster",
+      "ownerSide": true,
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

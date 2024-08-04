@@ -1,0 +1,32 @@
+{
+  "eofficeApp": {
+    "parameterLookup": {
+      "home": {
+        "title": "Parameter Lookups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parameter Lookup",
+        "createOrEditLabel": "Create or edit a Parameter Lookup",
+        "notFound": "No Parameter Lookups found"
+      },
+      "created": "A new Parameter Lookup is created with identifier {{ param }}",
+      "updated": "A Parameter Lookup is updated with identifier {{ param }}",
+      "deleted": "A Parameter Lookup is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parameter Lookup {{ id }}?"
+      },
+      "detail": {
+        "title": "Parameter Lookup"
+      },
+      "id": "ID",
+      "parameterName": "Parameter Name",
+      "parameterValue": "Parameter Value",
+      "type": "Type",
+      "status": "Status",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "organization": "Organization"
+    }
+  }
+}

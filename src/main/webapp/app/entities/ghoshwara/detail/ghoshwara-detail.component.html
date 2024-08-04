@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ghoshwara">
+      <h2 data-cy="ghoshwaraDetailsHeading"><span jhiTranslate="eofficeApp.ghoshwara.detail.title">Ghoshwara</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ghoshwara.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.registerType">Register Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'eofficeApp.RegisterType.' + ghoshwara.registerType }}">{{ ghoshwara.registerType }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.initialPendings">Initial Pendings</span></dt>
+        <dd>
+          <span>{{ ghoshwara.initialPendings }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.currentWeekInwards">Current Week Inwards</span></dt>
+        <dd>
+          <span>{{ ghoshwara.currentWeekInwards }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.total">Total</span></dt>
+        <dd>
+          <span>{{ ghoshwara.total }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.selfGenerated">Self Generated</span></dt>
+        <dd>
+          <span>{{ ghoshwara.selfGenerated }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.currentWeekCleared">Current Week Cleared</span></dt>
+        <dd>
+          <span>{{ ghoshwara.currentWeekCleared }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.weeklyPendings">Weekly Pendings</span></dt>
+        <dd>
+          <span>{{ ghoshwara.weeklyPendings }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.firstWeek">First Week</span></dt>
+        <dd>
+          <span>{{ ghoshwara.firstWeek }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.secondWeek">Second Week</span></dt>
+        <dd>
+          <span>{{ ghoshwara.secondWeek }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.thirdWeek">Third Week</span></dt>
+        <dd>
+          <span>{{ ghoshwara.thirdWeek }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.firstMonth">First Month</span></dt>
+        <dd>
+          <span>{{ ghoshwara.firstMonth }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.secondMonth">Second Month</span></dt>
+        <dd>
+          <span>{{ ghoshwara.secondMonth }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.thirdMonth">Third Month</span></dt>
+        <dd>
+          <span>{{ ghoshwara.thirdMonth }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.withinSixMonths">Within Six Months</span></dt>
+        <dd>
+          <span>{{ ghoshwara.withinSixMonths }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.date">Date</span></dt>
+        <dd>
+          <span>{{ ghoshwara.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ ghoshwara.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ ghoshwara.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.ghoshwara.securityUser">Security User</span></dt>
+        <dd>
+          <div *ngIf="ghoshwara.securityUser">
+            <a [routerLink]="['/security-user', ghoshwara.securityUser?.id, 'view']">{{ ghoshwara.securityUser?.username }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ghoshwara', ghoshwara.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

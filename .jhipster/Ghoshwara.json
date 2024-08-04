@@ -1,0 +1,93 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122551",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "ghoshwara",
+  "fields": [
+    {
+      "fieldName": "registerType",
+      "fieldType": "RegisterType",
+      "fieldValues": "WORK_DESCRIPTION (WorkDescription),AWAITED_REGISTER (AwaitedRegister)"
+    },
+    {
+      "fieldName": "initialPendings",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentWeekInwards",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "selfGenerated",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentWeekCleared",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "weeklyPendings",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "firstWeek",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "secondWeek",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "thirdWeek",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "firstMonth",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "secondMonth",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "thirdMonth",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "withinSixMonths",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Ghoshwara",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "securityUser",
+      "otherEntityRelationshipName": "ghoshwara",
+      "relationshipName": "securityUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

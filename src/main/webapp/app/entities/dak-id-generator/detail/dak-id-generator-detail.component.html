@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dakIdGenerator">
+      <h2 data-cy="dakIdGeneratorDetailsHeading"><span jhiTranslate="eofficeApp.dakIdGenerator.detail.title">Dak Id Generator</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dakIdGenerator.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakIdGenerator.nextValInward">Next Val Inward</span></dt>
+        <dd>
+          <span>{{ dakIdGenerator.nextValInward }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakIdGenerator.nextValOutward">Next Val Outward</span></dt>
+        <dd>
+          <span>{{ dakIdGenerator.nextValOutward }}</span>
+        </dd>
+        <dt><span jhiTranslate="eofficeApp.dakIdGenerator.organization">Organization</span></dt>
+        <dd>
+          <div *ngIf="dakIdGenerator.organization">
+            <a [routerLink]="['/organization', dakIdGenerator.organization?.id, 'view']">{{ dakIdGenerator.organization?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dak-id-generator', dakIdGenerator.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

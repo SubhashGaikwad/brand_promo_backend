@@ -1,0 +1,169 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-parameter-lookup-heading"
+        data-cy="ParameterLookupCreateUpdateHeading"
+        jhiTranslate="eofficeApp.parameterLookup.home.createOrEditLabel"
+      >
+        Create or edit a Parameter Lookup
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.parameterName" for="field_parameterName">Parameter Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="parameterName"
+            id="field_parameterName"
+            data-cy="parameterName"
+            formControlName="parameterName"
+          />
+          <div
+            *ngIf="
+              editForm.get('parameterName')!.invalid && (editForm.get('parameterName')!.dirty || editForm.get('parameterName')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parameterName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.parameterValue" for="field_parameterValue"
+            >Parameter Value</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="parameterValue"
+            id="field_parameterValue"
+            data-cy="parameterValue"
+            formControlName="parameterValue"
+          />
+          <div
+            *ngIf="
+              editForm.get('parameterValue')!.invalid && (editForm.get('parameterValue')!.dirty || editForm.get('parameterValue')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parameterValue')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.type" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.parameterLookup.organization" for="field_organization">Organization</label>
+          <select class="form-control" id="field_organization" data-cy="organization" name="organization" formControlName="organization">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                organizationOption.id === editForm.get('organization')!.value?.id ? editForm.get('organization')!.value : organizationOption
+              "
+              *ngFor="let organizationOption of organizationsSharedCollection; trackBy: trackOrganizationById"
+            >
+              {{ organizationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

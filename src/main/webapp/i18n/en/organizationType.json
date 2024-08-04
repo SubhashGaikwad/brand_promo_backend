@@ -1,0 +1,9 @@
+{
+  "eofficeApp": {
+    "OrganizationType": {
+      "null": "",
+      "AR": "TalukaRegister",
+      "DDR": "DistrictDeputyRegister"
+    }
+  }
+}

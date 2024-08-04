@@ -1,0 +1,140 @@
+<div>
+  <h2 id="page-heading" data-cy="DakHistoryHeading">
+    <span jhiTranslate="eofficeApp.dakHistory.home.title">Dak Histories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakHistory.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dak-history"
+        [routerLink]="['/dak-history/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakHistory.home.createLabel"> Create a new Dak History </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dakHistories?.length === 0">
+    <span jhiTranslate="eofficeApp.dakHistory.home.notFound">No dakHistories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="dakHistories && dakHistories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="date"><span jhiTranslate="eofficeApp.dakHistory.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="assignedBy">
+            <span jhiTranslate="eofficeApp.dakHistory.assignedBy">Assigned By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assignedOn">
+            <span jhiTranslate="eofficeApp.dakHistory.assignedOn">Assigned On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="eofficeApp.dakHistory.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakStatus">
+            <span jhiTranslate="eofficeApp.dakHistory.dakStatus">Dak Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="eofficeApp.dakHistory.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="eofficeApp.dakHistory.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="eofficeApp.dakHistory.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakMaster.inwardNumber">
+            <span jhiTranslate="eofficeApp.dakHistory.dakMaster">Dak Master</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="securityUser.username">
+            <span jhiTranslate="eofficeApp.dakHistory.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dakHistory of dakHistories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dak-history', dakHistory.id, 'view']">{{ dakHistory.id }}</a>
+          </td>
+          <td>{{ dakHistory.date | formatMediumDatetime }}</td>
+          <td>{{ dakHistory.assignedBy }}</td>
+          <td>{{ dakHistory.assignedOn | formatMediumDatetime }}</td>
+          <td>{{ dakHistory.createdOn | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakHistory.dakStatus }}">{{ dakHistory.dakStatus }}</td>
+          <td>{{ dakHistory.status }}</td>
+          <td>{{ dakHistory.lastModified | formatMediumDatetime }}</td>
+          <td>{{ dakHistory.lastModifiedBy }}</td>
+          <td>
+            <div *ngIf="dakHistory.dakMaster">
+              <a [routerLink]="['/dak-master', dakHistory.dakMaster?.id, 'view']">{{ dakHistory.dakMaster?.inwardNumber }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dakHistory.securityUser">
+              <a [routerLink]="['/security-user', dakHistory.securityUser?.id, 'view']">{{ dakHistory.securityUser?.username }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/dak-history', dakHistory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/dak-history', dakHistory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dakHistory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="dakHistories && dakHistories.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122543",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "organization",
+  "fields": [
+    {
+      "fieldName": "organizationName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActivate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "orgnizationType",
+      "fieldType": "OrganizationType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AR (TalukaRegister),DDR (DistrictDeputyRegister)"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Organization",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

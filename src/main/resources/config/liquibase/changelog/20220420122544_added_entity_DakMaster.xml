@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity DakMaster.
+    -->
+    <changeSet id="20220420122544-1" author="jhipster">
+        <createTable tableName="dak_master">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="inward_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sender_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="contact_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sender_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sender_email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="subject" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="letter_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="letter_status" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="letter_received_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="await_reason" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dispatch_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="letter_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="is_response_received" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="assigned_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dak_assigned_from" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dak_assignee" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dispatch_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sender_outward" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="outward_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="taluka" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="organization_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="dak_master" columnName="letter_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="dak_master" columnName="letter_received_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="dak_master" columnName="dispatch_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="dak_master" columnName="assigned_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="dak_master" columnName="last_modified" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20220420122544-1-relations" author="jhipster">
+
+        <createTable tableName="rel_dak_master__security_user">
+            <column name="security_user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dak_master_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="dak_master_id, security_user_id" tableName="rel_dak_master__security_user"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220420122544-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/dak_master.csv"
+                  separator=";"
+                  tableName="dak_master"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="inward_number" type="string"/>
+            <column name="sender_name" type="string"/>
+            <column name="contact_number" type="string"/>
+            <column name="sender_address" type="string"/>
+            <column name="sender_email" type="string"/>
+            <column name="subject" type="string"/>
+            <column name="letter_date" type="date"/>
+            <column name="current_status" type="string"/>
+            <column name="letter_status" type="boolean"/>
+            <column name="letter_received_date" type="date"/>
+            <column name="await_reason" type="string"/>
+            <column name="dispatch_date" type="date"/>
+            <column name="created_by" type="string"/>
+            <column name="letter_type" type="string"/>
+            <column name="is_response_received" type="boolean"/>
+            <column name="assigned_date" type="date"/>
+            <column name="last_modified" type="date"/>
+            <column name="last_modified_by" type="string"/>
+            <column name="dak_assigned_from" type="string"/>
+            <column name="dak_assignee" type="string"/>
+            <column name="dispatch_by" type="string"/>
+            <column name="sender_outward" type="string"/>
+            <column name="outward_number" type="string"/>
+            <column name="taluka" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

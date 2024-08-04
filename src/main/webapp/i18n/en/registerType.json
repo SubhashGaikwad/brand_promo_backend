@@ -1,0 +1,9 @@
+{
+  "eofficeApp": {
+    "RegisterType": {
+      "null": "",
+      "WORK_DESCRIPTION": "WorkDescription",
+      "AWAITED_REGISTER": "AwaitedRegister"
+    }
+  }
+}

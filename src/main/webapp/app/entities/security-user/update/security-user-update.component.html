@@ -1,0 +1,252 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-security-user-heading"
+        data-cy="SecurityUserCreateUpdateHeading"
+        jhiTranslate="eofficeApp.securityUser.home.createOrEditLabel"
+      >
+        Create or edit a Security User
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.firstName" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.designation" for="field_designation">Designation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designation"
+            id="field_designation"
+            data-cy="designation"
+            formControlName="designation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.username" for="field_username">Username</label>
+          <input type="text" class="form-control" name="username" id="field_username" data-cy="username" formControlName="username" />
+          <div *ngIf="editForm.get('username')!.invalid && (editForm.get('username')!.dirty || editForm.get('username')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('username')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.passwordHash" for="field_passwordHash">Password Hash</label>
+          <input
+            type="text"
+            class="form-control"
+            name="passwordHash"
+            id="field_passwordHash"
+            data-cy="passwordHash"
+            formControlName="passwordHash"
+          />
+          <div
+            *ngIf="editForm.get('passwordHash')!.invalid && (editForm.get('passwordHash')!.dirty || editForm.get('passwordHash')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('passwordHash')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.department" for="field_department">Department</label>
+          <input
+            type="text"
+            class="form-control"
+            name="department"
+            id="field_department"
+            data-cy="department"
+            formControlName="department"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.imageUrl" for="field_imageUrl">Image Url</label>
+          <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" data-cy="imageUrl" formControlName="imageUrl" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.activated" for="field_activated">Activated</label>
+          <input type="checkbox" class="form-check" name="activated" id="field_activated" data-cy="activated" formControlName="activated" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.langKey" for="field_langKey">Lang Key</label>
+          <input type="text" class="form-control" name="langKey" id="field_langKey" data-cy="langKey" formControlName="langKey" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.activationKey" for="field_activationKey">Activation Key</label>
+          <input
+            type="text"
+            class="form-control"
+            name="activationKey"
+            id="field_activationKey"
+            data-cy="activationKey"
+            formControlName="activationKey"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.resetKey" for="field_resetKey">Reset Key</label>
+          <input type="text" class="form-control" name="resetKey" id="field_resetKey" data-cy="resetKey" formControlName="resetKey" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.resetDate" for="field_resetDate">Reset Date</label>
+          <div class="d-flex">
+            <input
+              id="field_resetDate"
+              data-cy="resetDate"
+              type="datetime-local"
+              class="form-control"
+              name="resetDate"
+              formControlName="resetDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.mobileNo" for="field_mobileNo">Mobile No</label>
+          <input type="text" class="form-control" name="mobileNo" id="field_mobileNo" data-cy="mobileNo" formControlName="mobileNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.securityUser.organization" for="field_organization">Organization</label>
+          <select class="form-control" id="field_organization" data-cy="organization" name="organization" formControlName="organization">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                organizationOption.id === editForm.get('organization')!.value?.id ? editForm.get('organization')!.value : organizationOption
+              "
+              *ngFor="let organizationOption of organizationsSharedCollection; trackBy: trackOrganizationById"
+            >
+              {{ organizationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="eofficeApp.securityUser.securityPermission" for="field_securityPermissions">Security Permission</label>
+          <select
+            class="form-control"
+            id="field_securityPermissions"
+            data-cy="securityPermission"
+            multiple
+            name="securityPermissions"
+            formControlName="securityPermissions"
+          >
+            <option
+              [ngValue]="getSelectedSecurityPermission(securityPermissionOption, editForm.get('securityPermissions')!.value)"
+              *ngFor="let securityPermissionOption of securityPermissionsSharedCollection; trackBy: trackSecurityPermissionById"
+            >
+              {{ securityPermissionOption.permissionName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="eofficeApp.securityUser.securityRole" for="field_securityRoles">Security Role</label>
+          <select
+            class="form-control"
+            id="field_securityRoles"
+            data-cy="securityRole"
+            multiple
+            name="securityRoles"
+            formControlName="securityRoles"
+          >
+            <option
+              [ngValue]="getSelectedSecurityRole(securityRoleOption, editForm.get('securityRoles')!.value)"
+              *ngFor="let securityRoleOption of securityRolesSharedCollection; trackBy: trackSecurityRoleById"
+            >
+              {{ securityRoleOption.roleName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

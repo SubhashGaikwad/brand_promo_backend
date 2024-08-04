@@ -1,0 +1,150 @@
+<div>
+  <h2 id="page-heading" data-cy="DakJourneyHeading">
+    <span jhiTranslate="eofficeApp.dakJourney.home.title">Dak Journeys</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakJourney.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dak-journey"
+        [routerLink]="['/dak-journey/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="eofficeApp.dakJourney.home.createLabel"> Create a new Dak Journey </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dakJourneys?.length === 0">
+    <span jhiTranslate="eofficeApp.dakJourney.home.notFound">No dakJourneys found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="dakJourneys && dakJourneys.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="assignedOn">
+            <span jhiTranslate="eofficeApp.dakJourney.assignedOn">Assigned On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedOn">
+            <span jhiTranslate="eofficeApp.dakJourney.updatedOn">Updated On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakStatus">
+            <span jhiTranslate="eofficeApp.dakJourney.dakStatus">Dak Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="eofficeApp.dakJourney.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakAssignedBy">
+            <span jhiTranslate="eofficeApp.dakJourney.dakAssignedBy">Dak Assigned By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakAssignedTo">
+            <span jhiTranslate="eofficeApp.dakJourney.dakAssignedTo">Dak Assigned To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="eofficeApp.dakJourney.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="eofficeApp.dakJourney.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dakMaster.inwardNumber">
+            <span jhiTranslate="eofficeApp.dakJourney.dakMaster">Dak Master</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="securityUser.username">
+            <span jhiTranslate="eofficeApp.dakJourney.securityUser">Security User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="commentMaster.id">
+            <span jhiTranslate="eofficeApp.dakJourney.commentMaster">Comment Master</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dakJourney of dakJourneys; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dak-journey', dakJourney.id, 'view']">{{ dakJourney.id }}</a>
+          </td>
+          <td>{{ dakJourney.assignedOn | formatMediumDatetime }}</td>
+          <td>{{ dakJourney.updatedOn | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'eofficeApp.DakStatus.' + dakJourney.dakStatus }}">{{ dakJourney.dakStatus }}</td>
+          <td>{{ dakJourney.status }}</td>
+          <td>{{ dakJourney.dakAssignedBy }}</td>
+          <td>{{ dakJourney.dakAssignedTo }}</td>
+          <td>{{ dakJourney.lastModified | formatMediumDatetime }}</td>
+          <td>{{ dakJourney.lastModifiedBy }}</td>
+          <td>
+            <div *ngIf="dakJourney.dakMaster">
+              <a [routerLink]="['/dak-master', dakJourney.dakMaster?.id, 'view']">{{ dakJourney.dakMaster?.inwardNumber }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dakJourney.securityUser">
+              <a [routerLink]="['/security-user', dakJourney.securityUser?.id, 'view']">{{ dakJourney.securityUser?.username }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dakJourney.commentMaster">
+              <a [routerLink]="['/comment-master', dakJourney.commentMaster?.id, 'view']">{{ dakJourney.commentMaster?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/dak-journey', dakJourney.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/dak-journey', dakJourney.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dakJourney)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="dakJourneys && dakJourneys.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

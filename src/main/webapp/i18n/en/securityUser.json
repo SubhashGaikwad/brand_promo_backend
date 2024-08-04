@@ -1,0 +1,44 @@
+{
+  "eofficeApp": {
+    "securityUser": {
+      "home": {
+        "title": "Security Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Security User",
+        "createOrEditLabel": "Create or edit a Security User",
+        "notFound": "No Security Users found"
+      },
+      "created": "A new Security User is created with identifier {{ param }}",
+      "updated": "A Security User is updated with identifier {{ param }}",
+      "deleted": "A Security User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Security User {{ id }}?"
+      },
+      "detail": {
+        "title": "Security User"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "designation": "Designation",
+      "username": "Username",
+      "passwordHash": "Password Hash",
+      "email": "Email",
+      "description": "Description",
+      "department": "Department",
+      "imageUrl": "Image Url",
+      "activated": "Activated",
+      "langKey": "Lang Key",
+      "activationKey": "Activation Key",
+      "resetKey": "Reset Key",
+      "resetDate": "Reset Date",
+      "mobileNo": "Mobile No",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "organization": "Organization",
+      "securityPermission": "Security Permission",
+      "securityRole": "Security Role",
+      "dakMaster": "Dak Master"
+    }
+  }
+}

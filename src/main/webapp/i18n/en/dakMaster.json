@@ -1,0 +1,49 @@
+{
+  "eofficeApp": {
+    "dakMaster": {
+      "home": {
+        "title": "Dak Masters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dak Master",
+        "createOrEditLabel": "Create or edit a Dak Master",
+        "notFound": "No Dak Masters found"
+      },
+      "created": "A new Dak Master is created with identifier {{ param }}",
+      "updated": "A Dak Master is updated with identifier {{ param }}",
+      "deleted": "A Dak Master is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dak Master {{ id }}?"
+      },
+      "detail": {
+        "title": "Dak Master"
+      },
+      "id": "ID",
+      "inwardNumber": "Inward Number",
+      "senderName": "Sender Name",
+      "contactNumber": "Contact Number",
+      "senderAddress": "Sender Address",
+      "senderEmail": "Sender Email",
+      "subject": "Subject",
+      "letterDate": "Letter Date",
+      "currentStatus": "Current Status",
+      "letterStatus": "Letter Status",
+      "letterReceivedDate": "Letter Received Date",
+      "awaitReason": "Await Reason",
+      "dispatchDate": "Dispatch Date",
+      "createdBy": "Created By",
+      "letterType": "Letter Type",
+      "isResponseReceived": "Is Response Received",
+      "assignedDate": "Assigned Date",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "dakAssignedFrom": "Dak Assigned From",
+      "dakAssignee": "Dak Assignee",
+      "dispatchBy": "Dispatch By",
+      "senderOutward": "Sender Outward",
+      "outwardNumber": "Outward Number",
+      "taluka": "Taluka",
+      "organization": "Organization",
+      "securityUser": "Security User"
+    }
+  }
+}

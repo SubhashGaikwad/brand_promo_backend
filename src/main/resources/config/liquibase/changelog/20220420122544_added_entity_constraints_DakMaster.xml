@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DakMaster.
+    -->
+    <changeSet id="20220420122544-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="organization_id"
+                                 baseTableName="dak_master"
+                                 constraintName="fk_dak_master__organization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="dak_master_id"
+                                 baseTableName="rel_dak_master__security_user"
+                                 constraintName="fk_rel_dak_master__security_user__dak_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dak_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="security_user_id"
+                                 baseTableName="rel_dak_master__security_user"
+                                 constraintName="fk_rel_dak_master__security_user__security_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="security_user"/>
+    </changeSet>
+</databaseChangeLog>

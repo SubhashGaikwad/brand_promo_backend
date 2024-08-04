@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-dak-id-generator-heading"
+        data-cy="DakIdGeneratorCreateUpdateHeading"
+        jhiTranslate="eofficeApp.dakIdGenerator.home.createOrEditLabel"
+      >
+        Create or edit a Dak Id Generator
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakIdGenerator.nextValInward" for="field_nextValInward">Next Val Inward</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nextValInward"
+            id="field_nextValInward"
+            data-cy="nextValInward"
+            formControlName="nextValInward"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakIdGenerator.nextValOutward" for="field_nextValOutward"
+            >Next Val Outward</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="nextValOutward"
+            id="field_nextValOutward"
+            data-cy="nextValOutward"
+            formControlName="nextValOutward"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.dakIdGenerator.organization" for="field_organization">Organization</label>
+          <select class="form-control" id="field_organization" data-cy="organization" name="organization" formControlName="organization">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                organizationOption.id === editForm.get('organization')!.value?.id ? editForm.get('organization')!.value : organizationOption
+              "
+              *ngFor="let organizationOption of organizationsCollection; trackBy: trackOrganizationById"
+            >
+              {{ organizationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

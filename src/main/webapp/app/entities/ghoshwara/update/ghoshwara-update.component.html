@@ -1,0 +1,242 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ghoshwara-heading" data-cy="GhoshwaraCreateUpdateHeading" jhiTranslate="eofficeApp.ghoshwara.home.createOrEditLabel">
+        Create or edit a Ghoshwara
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.registerType" for="field_registerType">Register Type</label>
+          <select class="form-control" name="registerType" formControlName="registerType" id="field_registerType" data-cy="registerType">
+            <option [ngValue]="null">{{ 'eofficeApp.RegisterType.null' | translate }}</option>
+            <option *ngFor="let registerType of registerTypeValues" [value]="registerType">
+              {{ 'eofficeApp.RegisterType.' + registerType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.initialPendings" for="field_initialPendings">Initial Pendings</label>
+          <input
+            type="number"
+            class="form-control"
+            name="initialPendings"
+            id="field_initialPendings"
+            data-cy="initialPendings"
+            formControlName="initialPendings"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.currentWeekInwards" for="field_currentWeekInwards"
+            >Current Week Inwards</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="currentWeekInwards"
+            id="field_currentWeekInwards"
+            data-cy="currentWeekInwards"
+            formControlName="currentWeekInwards"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.total" for="field_total">Total</label>
+          <input type="number" class="form-control" name="total" id="field_total" data-cy="total" formControlName="total" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.selfGenerated" for="field_selfGenerated">Self Generated</label>
+          <input
+            type="number"
+            class="form-control"
+            name="selfGenerated"
+            id="field_selfGenerated"
+            data-cy="selfGenerated"
+            formControlName="selfGenerated"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.currentWeekCleared" for="field_currentWeekCleared"
+            >Current Week Cleared</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="currentWeekCleared"
+            id="field_currentWeekCleared"
+            data-cy="currentWeekCleared"
+            formControlName="currentWeekCleared"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.weeklyPendings" for="field_weeklyPendings">Weekly Pendings</label>
+          <input
+            type="number"
+            class="form-control"
+            name="weeklyPendings"
+            id="field_weeklyPendings"
+            data-cy="weeklyPendings"
+            formControlName="weeklyPendings"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.firstWeek" for="field_firstWeek">First Week</label>
+          <input type="number" class="form-control" name="firstWeek" id="field_firstWeek" data-cy="firstWeek" formControlName="firstWeek" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.secondWeek" for="field_secondWeek">Second Week</label>
+          <input
+            type="number"
+            class="form-control"
+            name="secondWeek"
+            id="field_secondWeek"
+            data-cy="secondWeek"
+            formControlName="secondWeek"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.thirdWeek" for="field_thirdWeek">Third Week</label>
+          <input type="number" class="form-control" name="thirdWeek" id="field_thirdWeek" data-cy="thirdWeek" formControlName="thirdWeek" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.firstMonth" for="field_firstMonth">First Month</label>
+          <input
+            type="number"
+            class="form-control"
+            name="firstMonth"
+            id="field_firstMonth"
+            data-cy="firstMonth"
+            formControlName="firstMonth"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.secondMonth" for="field_secondMonth">Second Month</label>
+          <input
+            type="number"
+            class="form-control"
+            name="secondMonth"
+            id="field_secondMonth"
+            data-cy="secondMonth"
+            formControlName="secondMonth"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.thirdMonth" for="field_thirdMonth">Third Month</label>
+          <input
+            type="number"
+            class="form-control"
+            name="thirdMonth"
+            id="field_thirdMonth"
+            data-cy="thirdMonth"
+            formControlName="thirdMonth"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.withinSixMonths" for="field_withinSixMonths"
+            >Within Six Months</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="withinSixMonths"
+            id="field_withinSixMonths"
+            data-cy="withinSixMonths"
+            formControlName="withinSixMonths"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="eofficeApp.ghoshwara.securityUser" for="field_securityUser">Security User</label>
+          <select class="form-control" id="field_securityUser" data-cy="securityUser" name="securityUser" formControlName="securityUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                securityUserOption.id === editForm.get('securityUser')!.value?.id ? editForm.get('securityUser')!.value : securityUserOption
+              "
+              *ngFor="let securityUserOption of securityUsersSharedCollection; trackBy: trackSecurityUserById"
+            >
+              {{ securityUserOption.username }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

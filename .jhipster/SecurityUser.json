@@ -1,0 +1,118 @@
+{
+  "applications": "*",
+  "changelogDate": "20220420122539",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "security_user",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "designation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "username",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "passwordHash",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activated",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "langKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activationKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resetKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resetDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "mobileNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "SecurityUser",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "securityUser",
+      "relationshipName": "organization",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "permissionName",
+      "otherEntityName": "securityPermission",
+      "otherEntityRelationshipName": "securityUser",
+      "ownerSide": true,
+      "relationshipName": "securityPermission",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "roleName",
+      "otherEntityName": "securityRole",
+      "otherEntityRelationshipName": "securityUser",
+      "ownerSide": true,
+      "relationshipName": "securityRole",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "inwardNumber",
+      "otherEntityName": "dakMaster",
+      "otherEntityRelationshipName": "securityUser",
+      "ownerSide": false,
+      "relationshipName": "dakMaster",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
